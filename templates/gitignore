@@ -1,0 +1,10 @@
+# SQLite database (created on first boot)
+app.sqlite3*
+
+# Bundler
+/.bundle
+/vendor/bundle
+
+# Editor and OS noise
+.DS_Store
+*.swp
