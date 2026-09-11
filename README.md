@@ -1,45 +1,27 @@
 # tiny
 
-A Ruby bootstrapper that generates a minimal, runnable, database-backed SaaS starting point: Sinatra, Sequel, SQLite, Phlex, HTMX. One command: `tiny new myapp`.
+A minimal, runnable, database-backed SaaS starting point in a single Ruby file: Sinatra, Sequel, SQLite, Phlex, HTMX. Clone, bundle, run.
 
 ## Requirements
 
 - Ruby 3.1+ and Bundler
 - No Node.js, no npm, no frontend build step
 
-## Install
-
-tiny is a plain executable plus the templates beside it; there is no gem to install.
+## Run it
 
     git clone https://github.com/raidzklart/tiny.git
-    export PATH="$PWD/tiny/exe:$PATH"   # or symlink exe/tiny into your PATH
+    cd tiny
+    bundle install
+    ruby app.rb
 
-## Usage
+Then open http://localhost:4567.
 
-    tiny new myapp
+The SQLite database (`app.sqlite3`) is created in the project root on first boot. It is listed in `.gitignore`.
 
-Creates `myapp/` containing exactly three files: `app.rb`, `Gemfile`, `.gitignore`.
-Then it runs `bundle install`, `git init`, and one initial commit, and prints the
-start command.
-
-    cd myapp && ruby app.rb    # → http://localhost:4567
+## Routes
 
 - `/` — a generic SaaS dashboard shell
 - `/showcase` — every component with its variants and states
 - `/app.css`, `/app.js` — the combined assets (no `public/` directory)
 
-The SQLite database (`app.sqlite3`) is created inside the project on first boot.
-
-### Flags
-
-- `--skip-install` — skip `bundle install`
-- `--skip-git` — skip `git init` and the initial commit
-
-### Other commands
-
-- `tiny help` / `tiny --help` — show usage
-
-## Repository layout
-
-    exe/tiny       the bootstrapper
-    templates/     the three files it copies (gitignore is written as .gitignore)
+Assets are declared next to the Phlex components that use them and are served as two flat endpoints. There is no asset build step and no `public/` directory.
